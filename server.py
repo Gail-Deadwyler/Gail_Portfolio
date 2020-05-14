@@ -6,7 +6,7 @@ def home():
     return render_template('index.html')
 
 @app.route('/<string:page_name>')
-def about(page_name):
+def html_page(page_name):
     return render_template(page_name)
 
 # if this page is the main page, run it
