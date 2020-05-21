@@ -2,21 +2,37 @@ from flask import Flask, render_template, request, redirect
 import csv
 app = Flask(__name__)
 
+ENV = 'dev'
+
+if ENV == 'dev':
+    app.debug = True
+else:
+    app.debug = False
+
+# Routes listed here
+# route to home page
 @app.route('/')
-def home():
+def index():
     return render_template('index.html')
+# route to projects page
+@app.route('/works')
+def works():
+    return render_template('works.html')
+# route to about me page
+@app.route('/about')
+def about():
+    return render_template('about.html')
+# route to contact page
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
-@app.route('/<string:page_name>')
-def html_page(page_name):
-    return render_template(page_name)
+# route to thank you page
+@app.route('/thankyou')
+def thanks():
+    return render_template('thankyou.html')
 
-def write_to_file(data):
-    with open('database.txt', mode='a') as database:
-        email = data['email']
-        subject = data['subject']
-        message = data['message']
-        file = database.write(f'\n{email}, {subject}, {message}')
-
+# save form data to csv file
 def write_to_csv(data):
     with open('database.csv', newline='', mode='a') as csv_database:
         email = data['email']
@@ -25,21 +41,18 @@ def write_to_csv(data):
         csv_writer = csv.writer(csv_database, delimiter=',', quotechar=';', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow([email, subject, message])
 
+# form submission route
 @app.route('/submit_form', methods=['POST', 'GET'])
 def submit_form():
     if request.method == 'POST':
         try:
             data = request.form.to_dict()
             write_to_csv(data)
-            # write_to_file(data)
-            return redirect('/thankyou.html')
+            return redirect('/thankyou')
         except:
-            return 'did not save to database'
+            return 'did not save to csv'
     else:
         return 'something went wrong'
-
-
-
 
 # if this page is the main page, run it
 if __name__ == '__main__':
