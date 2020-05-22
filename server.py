@@ -14,14 +14,17 @@ else:
 @app.route('/')
 def index():
     return render_template('index.html')
+
 # route to projects page
 @app.route('/works')
 def works():
     return render_template('works.html')
+
 # route to about me page
 @app.route('/about')
 def about():
     return render_template('about.html')
+    
 # route to contact page
 @app.route('/contact')
 def contact():

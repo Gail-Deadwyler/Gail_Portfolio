@@ -10,8 +10,9 @@
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
   <link rel="apple-touch-icon" sizes="180x180" href="./static/assets/apple-icon-180x180.png">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='assets/favicon.ico') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='gd.css') }}">
+  <link href="./static/assets/favicon.ico" rel="icon">
+  <link href="./static/main.3f6952e4.css" rel="stylesheet">
+
   {%block head%}
 
   {%endblock%}
@@ -24,7 +25,7 @@
 <div id="site-border-bottom"></div>
 <!-- Add your content of header -->
 <header>
-  <nav class="navbar navbar-fixed-top navbar-inverse">
+  <nav class="navbar  navbar-fixed-top navbar-inverse">
     <div class="container">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
@@ -43,15 +44,15 @@
     </div>
   </nav>
 </header>
-
 {%block body%}
 
 {%endblock%}
+
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
      navActivePage();
   });
 </script>
-<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+<script type="text/javascript" src="./static/main.70a66962.js"></script>
 </body>
 </html>
